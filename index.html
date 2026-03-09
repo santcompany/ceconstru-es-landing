@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crateús Construções — Sua Casa Financiada, na Planta e Sem Burocracia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:    #0B1628;
+  --navy-d:  #070F1C;
+  --navy-m:  #0F1E35;
+  --navy-l:  #162440;
+  --blue:    #1A3A6B;
+  --blue-l:  #1E4A8A;
+  --sky:     #2563B0;
+  --orange:  #F97316;
+  --orange-d:#EA6C0A;
+  --orange-l:#FB923C;
+  --amber:   #F59E0B;
+  --concrete:#8B8D91;
+  --steel:   #B0B4BC;
+  --cream:   #F0EDE8;
+  --white:   #FAFAFA;
+  --muted:   rgba(240,237,232,.5);
+  --muted2:  rgba(240,237,232,.22);
+  --border:  rgba(240,237,232,.08);
+  --border-b:rgba(26,58,107,.4);
+  --orange-dim:rgba(249,115,22,.12);
+  --blue-dim:rgba(37,99,176,.15);
+}
+html{scroll-behavior:smooth;}
+*{cursor:none!important;}
+#cur{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-radius .2s;}
+#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--orange);border-radius:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease;opacity:.4;}
+
+body{font-family:'Barlow',sans-serif;background:var(--navy-d);color:var(--cream);overflow-x:hidden;}
+
+/* Blueprint grid bg */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(26,58,107,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,58,107,.07) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(26,58,107,.12) 0%,transparent 70%);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:500;height:68px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.scrolled{background:rgba(7,15,28,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo-icon{
+  width:38px;height:38px;background:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:900;
+  color:var(--navy-d);letter-spacing:0;position:relative;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);
+}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-name{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--cream);}
+.nav-logo-name span{color:var(--orange);}
+.nav-logo-sub{font-size:7.5px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-top:3px;}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center;}
+.nav-links a{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--cream);}
+.nav-cta{background:var(--orange);color:var(--navy-d);padding:10px 24px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:8px;transition:all .25s;clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px);}
+.nav-cta:hover{background:var(--orange-l);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);}
+.mob-menu{position:fixed;inset:0;z-index:600;background:var(--navy-d);display:flex;flex-direction:column;justify-content:center;padding:64px 40px;transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.mob-menu.open{transform:translateX(0);}
+.mob-close{position:absolute;top:28px;right:28px;background:none;border:none;font-size:26px;color:var(--orange);}
+.mob-menu a{font-family:'Barlow Condensed',sans-serif;font-size:clamp(38px,8vw,58px);font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border);display:block;transition:color .2s,padding-left .2s;}
+.mob-menu a:hover{color:var(--orange);padding-left:10px;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden;z-index:1;}
+
+/* Construction lines decoration */
+.hero::before{
+  content:'';position:absolute;
+  top:0;right:0;width:45%;height:100%;
+  background:
+    linear-gradient(135deg,transparent 49.5%,rgba(249,115,22,.06) 49.5%,rgba(249,115,22,.06) 50.5%,transparent 50.5%),
+    linear-gradient(135deg,transparent 39.5%,rgba(26,58,107,.12) 39.5%,rgba(26,58,107,.12) 40.5%,transparent 40.5%);
+  pointer-events:none;
+}
+
+.hero-left{padding:130px 72px 90px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:90px 52px 90px 32px;}
+
+/* Hero tag */
+.h-tag{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:var(--orange-dim);border:1px solid rgba(249,115,22,.25);margin-bottom:28px;animation:fadeUp .8s ease both;}
+.h-tag-dot{width:6px;height:6px;background:var(--orange);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.7;}}
+.h-tag-txt{font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);}
+
+/* Hero H1 */
+.hero-h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(56px,7vw,110px);font-weight:900;
+  line-height:.92;text-transform:uppercase;letter-spacing:-1px;
+  margin-bottom:20px;animation:fadeUp .8s ease .07s both;
+}
+.hero-h1 .line-orange{color:var(--orange);display:block;}
+.hero-h1 .line-steel{color:var(--steel);font-weight:300;font-style:italic;display:block;}
+.hero-h1 .line-white{display:block;}
+
+.hero-desc{font-size:15.5px;font-weight:300;line-height:1.85;color:var(--muted);max-width:440px;margin-bottom:38px;animation:fadeUp .8s ease .14s both;}
+.hero-desc strong{color:var(--cream);font-weight:500;}
+
+/* Pillars */
+.hero-pillars{display:flex;gap:0;margin-bottom:42px;animation:fadeUp .8s ease .2s both;}
+.pillar{padding:14px 22px;border:1px solid var(--border);border-right:none;display:flex;flex-direction:column;gap:4px;transition:background .25s;}
+.pillar:last-child{border-right:1px solid var(--border);}
+.pillar:hover{background:var(--blue-dim);}
+.pil-ico{font-size:20px;}
+.pil-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--orange);line-height:1;}
+.pil-lbl{font-size:8.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .8s ease .27s both;}
+
+/* ── SIMULATOR CARD (hero right) ── */
+.sim-card{
+  width:100%;max-width:380px;
+  background:rgba(11,22,40,.85);backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+  border-top:3px solid var(--orange);
+  padding:32px 28px;
+  position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(240,237,232,.04);
+  animation:fadeUp .9s ease .1s both;
+}
+.sim-card::before{
+  content:'';position:absolute;top:3px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--orange),transparent);
+  opacity:.4;
+}
+.sim-head{margin-bottom:24px;}
+.sim-eye{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.sim-eye::before{content:'';width:16px;height:2px;background:var(--orange);}
+.sim-title{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:1px;}
+.sim-sub{font-size:12px;font-weight:300;color:var(--muted);margin-top:4px;}
+
+/* Sliders */
+.sim-field{margin-bottom:20px;}
+.sf-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.sf-lbl{font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--steel);}
+.sf-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--orange);}
+input[type=range]{
+  -webkit-appearance:none;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--orange) var(--pct,50%),rgba(240,237,232,.1) var(--pct,50%));
+  outline:none;border-radius:0;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;
+  background:var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+  cursor:pointer;transition:transform .15s;
+}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25);}
+/* Option buttons */
+.sf-opts{display:flex;gap:6px;flex-wrap:wrap;}
+.sf-opt{
+  padding:6px 14px;background:transparent;border:1px solid var(--border);
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:1px;color:var(--muted);transition:all .2s;
+}
+.sf-opt:hover,.sf-opt.active{background:var(--orange-dim);border-color:var(--orange);color:var(--orange);}
+/* Result */
+.sim-result{
+  background:linear-gradient(135deg,var(--navy-m),var(--navy-l));
+  border:1px solid rgba(249,115,22,.25);
+  padding:20px;margin:22px 0 20px;
+  position:relative;overflow:hidden;
+}
+.sim-result::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent);}
+.sr-label{font-size:8.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--steel);margin-bottom:6px;}
+.sr-value{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:var(--orange);line-height:1;letter-spacing:-1px;}
+.sr-value sup{font-size:22px;}
+.sr-note{font-size:10.5px;font-weight:300;color:var(--muted2);margin-top:4px;line-height:1.6;}
+.sr-breakdown{display:flex;gap:0;margin-top:12px;border-top:1px solid var(--border);padding-top:12px;}
+.srb{flex:1;text-align:center;padding:0 8px;border-right:1px solid var(--border);}
+.srb:last-child{border-right:none;}
+.srb-v{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--cream);}
+.srb-l{font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-top:2px;}
+
+/* ── BTNS ── */
+.btn-orange{background:var(--orange);color:var(--navy-d);padding:14px 28px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .25s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);}
+.btn-orange:hover{background:var(--orange-l);transform:translateY(-2px);box-shadow:0 12px 36px rgba(249,115,22,.4);}
+.btn-outline-o{background:transparent;color:var(--orange);padding:13px 28px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1.5px solid rgba(249,115,22,.4);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;}
+.btn-outline-o:hover{border-color:var(--orange);background:var(--orange-dim);}
+.btn-outline{background:transparent;color:var(--cream);padding:13px 28px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border);text-decoration:none;display:inline-block;transition:all .25s;}
+.btn-outline:hover{border-color:var(--steel);}
+
+/* ── SECTIONS ── */
+section{padding:110px 72px;position:relative;z-index:1;}
+.s-eye{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.s-eye::before{content:'';width:20px;height:2px;background:var(--orange);flex-shrink:0;}
+.s-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,4.5vw,66px);font-weight:900;text-transform:uppercase;letter-spacing:-0.5px;line-height:.95;margin-bottom:18px;}
+.s-h em{font-style:italic;font-weight:300;color:var(--steel);}
+.s-h .orange{color:var(--orange);}
+.s-p{font-size:15px;font-weight:300;line-height:1.85;color:var(--muted);max-width:520px;}
+
+/* ── TICKER ── */
+.ticker{background:var(--orange);padding:13px 0;overflow:hidden;position:relative;z-index:10;}
+.ticker-inner{display:flex;animation:ticker 35s linear infinite;width:max-content;}
+.t-item{display:flex;align-items:center;gap:20px;padding:0 30px;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--navy-d);}
+.t-sep{opacity:.4;font-size:10px;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── MODAL — COMO FUNCIONA ── */
+.sec-como{background:var(--navy-d);padding:0;overflow:hidden;}
+.como-wrap{display:grid;grid-template-columns:45% 55%;min-height:680px;}
+.como-left{
+  background:var(--navy-m);border-right:1px solid var(--border);
+  padding:100px 72px;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.como-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 20% 50%,rgba(26,58,107,.25) 0%,transparent 65%);}
+/* Big number watermark */
+.como-watermark{position:absolute;font-family:'Barlow Condensed',sans-serif;font-size:clamp(160px,22vw,300px);font-weight:900;color:rgba(249,115,22,.04);line-height:1;right:-20px;top:50%;transform:translateY(-50%);pointer-events:none;letter-spacing:-4px;}
+.como-left-c{position:relative;z-index:1;}
+
+/* Step items */
+.como-right{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:0;}
+.step-item{display:flex;gap:24px;align-items:flex-start;padding:28px 0;border-bottom:1px solid var(--border);position:relative;transition:padding-left .3s;}
+.step-item:last-child{border-bottom:none;}
+.step-item:hover{padding-left:8px;}
+.step-item::before{content:'';position:absolute;left:0;top:28px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--orange),transparent);opacity:0;transition:opacity .3s;}
+.step-item:hover::before{opacity:.4;}
+.step-num{
+  font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:900;
+  color:var(--orange);opacity:.2;line-height:1;flex-shrink:0;
+  width:52px;text-align:right;transition:opacity .3s;
+}
+.step-item:hover .step-num{opacity:.7;}
+.step-ico{font-size:26px;flex-shrink:0;margin-top:8px;}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.step-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.8;}
+.step-badge{display:inline-block;margin-top:8px;padding:4px 10px;background:var(--orange-dim);border:1px solid rgba(249,115,22,.2);font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);}
+
+/* ── FINANCIAMENTOS ── */
+.sec-fin{background:var(--navy-m);}
+.fin-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px;}
+.fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.fin-card{
+  background:var(--navy-d);padding:38px 32px;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.fin-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transition:transform .35s;transform-origin:left;}
+.fin-card:hover{background:rgba(26,58,107,.2);}
+.fin-card:hover::after{transform:scaleX(1);}
+.fin-card.dest{background:linear-gradient(135deg,var(--navy-l),var(--blue));}
+.fin-num{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-size:54px;font-weight:900;color:rgba(249,115,22,.07);line-height:1;margin-bottom:12px;}
+.fin-ico{font-size:30px;display:block;margin-bottom:14px;}
+.fin-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.fin-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.fin-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.fin-tag{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;background:var(--blue-dim);color:var(--sky);border:1px solid rgba(37,99,176,.3);}
+.fin-card.dest .fin-tag{background:rgba(249,115,22,.1);color:var(--orange-l);border-color:rgba(249,115,22,.2);}
+
+/* ── OBRAS / PORTFÓLIO ── */
+.sec-obras{background:var(--navy-d);}
+.obras-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:52px;}
+.obras-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto;gap:8px;}
+.obra-item{background:var(--navy-m);position:relative;overflow:hidden;transition:transform .4s;}
+.obra-item:hover{transform:scale(.99);}
+.obra-item:hover .obra-overlay{opacity:1;}
+.obra-item.big{grid-row:1/3;aspect-ratio:3/4;}
+.obra-item:not(.big){aspect-ratio:.85;}
+.obra-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;background:linear-gradient(160deg,rgba(26,58,107,.15),rgba(11,22,40,.6));}
+.oi-ico{font-size:clamp(36px,5vw,56px);opacity:.3;}
+.oi-lbl{font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);}
+.obra-overlay{position:absolute;inset:0;background:rgba(249,115,22,.1);opacity:0;display:flex;align-items:flex-end;padding:22px;transition:opacity .35s;z-index:2;}
+.ov-tag{background:var(--orange);color:var(--navy-d);padding:5px 14px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+/* Blueprint corner deco */
+.obra-item::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid rgba(249,115,22,.3);border-left:2px solid rgba(249,115,22,.3);z-index:3;}
+
+/* ── SERVIÇOS ── */
+.sec-servicos{background:var(--navy-m);padding:0;overflow:hidden;}
+.serv-wrap{display:grid;grid-template-columns:1fr 1fr;}
+.serv-left{
+  padding:100px 80px;display:flex;flex-direction:column;justify-content:center;
+  background:var(--navy-d);border-right:1px solid var(--border);position:relative;overflow:hidden;
+}
+.serv-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 15% 50%,rgba(26,58,107,.2) 0%,transparent 65%);}
+.serv-left::after{content:'CRATEÚS';font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(56px,8vw,110px);color:rgba(249,115,22,.03);position:absolute;bottom:40px;left:30px;letter-spacing:4px;pointer-events:none;text-transform:uppercase;}
+.serv-left-c{position:relative;z-index:1;}
+.serv-right{padding:100px 64px;display:flex;flex-direction:column;justify-content:center;gap:0;}
+.serv-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);transition:padding-left .25s,background .25s;}
+.serv-item:last-child{border-bottom:none;}
+.serv-item:hover{padding-left:8px;}
+.serv-ico-box{
+  width:46px;height:46px;flex-shrink:0;
+  background:var(--orange-dim);border:1px solid rgba(249,115,22,.25);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px);
+}
+.serv-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.serv-desc{font-size:12.5px;font-weight:300;color:var(--muted);line-height:1.75;}
+
+/* ── DEPOIMENTOS ── */
+.sec-dep{background:var(--navy-d);}
+.dep-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:56px;}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.dep-card{background:var(--navy-m);padding:36px 28px;position:relative;overflow:hidden;transition:background .3s;}
+.dep-card:hover{background:rgba(26,58,107,.2);}
+.dep-quote{font-family:'Barlow Condensed',sans-serif;font-size:100px;font-weight:900;color:rgba(249,115,22,.07);position:absolute;top:-10px;left:14px;line-height:1;pointer-events:none;}
+.dep-stars{color:var(--amber);font-size:13px;letter-spacing:4px;margin-bottom:16px;}
+.dep-text{font-size:14.5px;font-weight:300;line-height:1.8;color:var(--cream);margin-bottom:22px;position:relative;z-index:1;font-style:italic;}
+.dep-author{display:flex;gap:12px;align-items:center;padding-top:16px;border-top:1px solid var(--border);}
+.dep-init{width:40px;height:40px;background:var(--blue-dim);border:1px solid var(--border-b);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--sky);flex-shrink:0;clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px);}
+.dep-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:1px;}
+.dep-role{font-size:10px;font-weight:300;color:var(--muted2);margin-top:2px;}
+
+/* ── ENTREGA DE CHAVES ── */
+.sec-chaves{background:var(--orange);padding:0;overflow:hidden;}
+.chaves-wrap{display:grid;grid-template-columns:1fr 1fr;}
+.chaves-left{
+  padding:100px 80px;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.chaves-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 80% 30%,rgba(251,146,60,.4) 0%,transparent 65%);}
+.chaves-left::after{content:'🏠';font-size:clamp(120px,18vw,240px);position:absolute;right:-20px;bottom:-30px;opacity:.1;pointer-events:none;}
+.chaves-left-c{position:relative;z-index:1;}
+.chaves-left .s-eye{color:rgba(11,22,40,.5);}
+.chaves-left .s-eye::before{background:rgba(11,22,40,.4);}
+.chaves-left .s-h{color:var(--navy-d);}
+.chaves-left .s-h em{color:rgba(11,22,40,.5);}
+.chaves-left .s-p{color:rgba(11,22,40,.6);}
+.chaves-right{background:var(--navy-d);border-left:1px solid rgba(249,115,22,.2);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:0;}
+.chave-item{display:flex;gap:18px;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--border);transition:padding-left .25s;}
+.chave-item:hover{padding-left:8px;}
+.chave-item:last-child{border-bottom:none;}
+.chave-ico{font-size:26px;flex-shrink:0;margin-top:4px;}
+.chave-title{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.chave-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.75;}
+
+/* ── CONTATO ── */
+.sec-contato{background:var(--navy-m);padding:0;overflow:hidden;}
+.cont-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:600px;}
+.cont-left{padding:100px 80px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);position:relative;overflow:hidden;}
+.cont-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 15% 50%,rgba(26,58,107,.2) 0%,transparent 65%);}
+.cont-left-c{position:relative;z-index:1;}
+.cont-infos{margin-top:36px;display:flex;flex-direction:column;gap:18px;}
+.c-info{display:flex;gap:16px;align-items:flex-start;}
+.c-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+.c-lbl{font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);margin-bottom:3px;}
+.c-val{font-size:14.5px;font-weight:300;color:var(--cream);line-height:1.6;}
+/* Urgency box */
+.cont-urgency{
+  margin-top:32px;padding:20px 22px;
+  background:var(--orange-dim);border:1px solid rgba(249,115,22,.25);
+  border-left:3px solid var(--orange);
+}
+.cu-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+.cu-txt{font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;}
+
+.cont-right{padding:100px 80px;display:flex;flex-direction:column;justify-content:center;}
+.c-form{display:flex;flex-direction:column;gap:14px;}
+.c-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.c-group{display:flex;flex-direction:column;gap:6px;}
+.c-flbl{font-size:8.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);}
+.c-inp,.c-sel,.c-ta{background:rgba(240,237,232,.04);border:1px solid var(--border);padding:13px 16px;font-family:'Barlow',sans-serif;font-size:13.5px;font-weight:300;color:var(--cream);outline:none;transition:border-color .25s;-webkit-appearance:none;border-radius:0;}
+.c-inp::placeholder,.c-ta::placeholder{color:var(--muted2);}
+.c-inp:focus,.c-ta:focus{border-color:var(--orange);}
+.c-sel{color:var(--muted);cursor:pointer;}
+.c-sel option{background:var(--navy-d);color:var(--cream);}
+.c-ta{resize:vertical;min-height:90px;}
+.c-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;}
+.c-sub{background:var(--orange);color:var(--navy-d);padding:13px 24px;border:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;transition:all .25s;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);}
+.c-sub:hover{background:var(--orange-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.4);}
+.c-wa{display:flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:13px 20px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.c-wa:hover{background:#1db954;transform:translateY(-2px);}
+
+/* ── CTA FINAL ── */
+.sec-cta{background:var(--navy-d);padding:120px 80px;text-align:center;position:relative;overflow:hidden;}
+.sec-cta::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(26,58,107,.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,58,107,.1) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.sec-cta::after{content:'CONSTRUÇÕES';font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(60px,10vw,160px);color:rgba(249,115,22,.025);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:6px;text-transform:uppercase;}
+.sec-cta>*{position:relative;z-index:1;}
+.sec-cta .s-eye{justify-content:center;}
+.sec-cta .s-h{color:var(--cream);}
+.sec-cta .s-p{color:var(--muted);text-align:center;margin:0 auto 44px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--navy-d);padding:50px 72px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);position:relative;z-index:1;}
+.fl-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:rgba(240,237,232,.3);}
+.fl-logo span{color:var(--orange);}
+.fl-sub{font-size:8px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(240,237,232,.15);display:block;margin-top:4px;}
+.fl-copy{font-size:11px;color:rgba(240,237,232,.2);text-align:center;line-height:1.7;}
+.fl-nav{display:flex;flex-direction:column;align-items:flex-end;gap:7px;}
+.fl-nav a{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,237,232,.2);text-decoration:none;transition:color .2s;}
+.fl-nav a:hover{color:rgba(240,237,232,.6);}
+
+/* WA */
+.wa-float{position:fixed;bottom:30px;right:30px;z-index:400;width:52px;height:52px;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:24px;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.35);transition:all .25s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);}
+.wa-float:hover{transform:scale(1.1) translateY(-2px);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.v{opacity:1;transform:translateY(0);}
+.r1{transition-delay:.05s}.r2{transition-delay:.12s}.r3{transition-delay:.19s}.r4{transition-delay:.27s}.r5{transition-delay:.35s}
+
+@media(max-width:1100px){
+  nav{padding:0 28px;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  section{padding:80px 28px;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:120px 28px 52px;}
+  .hero-right{padding:0 28px 72px;}
+  .sim-card{max-width:100%;}
+  .como-wrap,.chaves-wrap,.serv-wrap,.cont-wrap{grid-template-columns:1fr;}
+  .como-left,.como-right,.chaves-left,.chaves-right,.serv-left,.serv-right,.cont-left,.cont-right{padding:64px 28px;}
+  .fin-head{grid-template-columns:1fr;gap:24px;}
+  .fin-grid{grid-template-columns:1fr 1fr;}
+  .dep-grid{grid-template-columns:1fr 1fr;}
+  .obras-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .obra-item.big{grid-row:auto;aspect-ratio:.9;}
+  .sec-cta{padding:80px 28px;}
+  footer{flex-direction:column;gap:20px;text-align:center;padding:36px 28px;}
+  .fl-nav{align-items:center;flex-direction:row;flex-wrap:wrap;justify-content:center;}
+}
+@media(max-width:640px){
+  nav{padding:0 20px;}
+  section{padding:60px 20px;}
+  .fin-grid,.dep-grid{grid-template-columns:1fr;}
+  .obras-grid{grid-template-columns:1fr;}
+  .c-row,.ag-row{grid-template-columns:1fr;}
+  .hero-btns,.cta-btns{flex-direction:column;align-items:flex-start;}
+  .cta-btns{align-items:center;}
+  footer{padding:28px 20px;}
+  .wa-float{bottom:18px;right:18px;}
+  .hero-pillars{flex-direction:column;}
+  .pillar{border-right:1px solid var(--border)!important;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<a href="https://wa.me/55000000000000?text=Olá!%20Tenho%20interesse%20em%20financiar%20minha%20casa%20pela%20Crateús%20Construções!" target="_blank" class="wa-float">💬</a>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#simulador" onclick="closeMob()">Simular</a>
+  <a href="#como-funciona" onclick="closeMob()">Como funciona</a>
+  <a href="#financiamentos" onclick="closeMob()">Financiamentos</a>
+  <a href="#obras" onclick="closeMob()">Obras</a>
+  <a href="#contato" onclick="closeMob()">Contato</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="nav-logo">
+    <div class="nav-logo-icon">CC</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Crateús<span> Construções</span></span>
+      <span class="nav-logo-sub">Construtora · Projetos Residenciais</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#simulador">Simular</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#financiamentos">Financiamentos</a></li>
+    <li><a href="#obras">Obras</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="#simulador" class="nav-cta">Simular minha casa →</a>
+    <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero" id="top">
+  <div class="hero-left">
+    <div class="h-tag"><div class="h-tag-dot"></div><div class="h-tag-txt">Construtora · Financiamentos · CG·CE · Brasil</div></div>
+    <h1 class="hero-h1">
+      <span class="line-white">Sua Casa</span>
+      <span class="line-orange">Financiada</span>
+      <span class="line-steel">na planta</span>
+    </h1>
+    <p class="hero-desc">
+      Compre sua casa <strong>sem burocracia</strong> — da planta às chaves. Projetos residenciais personalizados, construção no seu terreno e financiamento facilitado pelo Minha Casa Minha Vida.
+    </p>
+    <div class="hero-pillars">
+      <div class="pillar"><div class="pil-ico">🏠</div><div class="pil-val">100+</div><div class="pil-lbl">Casas entregues</div></div>
+      <div class="pillar"><div class="pil-ico">📋</div><div class="pil-val">3%</div><div class="pil-lbl">Juros ao ano</div></div>
+      <div class="pillar"><div class="pil-ico">🔑</div><div class="pil-val">0</div><div class="pil-lbl">Burocracia</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#simulador" class="btn-orange">Simular financiamento →</a>
+      <a href="#como-funciona" class="btn-outline-o">Como funciona</a>
+    </div>
+  </div>
+
+  <!-- ══ SIMULADOR HERO ══ -->
+  <div class="hero-right" id="simulador">
+    <div class="sim-card">
+      <div class="sim-head">
+        <div class="sim-eye">Simulador de Financiamento</div>
+        <div class="sim-title">Quanto cabe no<br>seu bolso?</div>
+        <div class="sim-sub">Calcule sua parcela agora — resultado instantâneo</div>
+      </div>
+
+      <!-- Renda -->
+      <div class="sim-field">
+        <div class="sf-head">
+          <span class="sf-lbl">Renda familiar bruta</span>
+          <span class="sf-val" id="vRenda">R$ 3.000</span>
+        </div>
+        <input type="range" id="sRenda" min="1500" max="12000" step="500" value="3000" oninput="calcSim()">
+      </div>
+
+      <!-- Quartos -->
+      <div class="sim-field">
+        <div class="sf-head"><span class="sf-lbl">Número de quartos</span></div>
+        <div class="sf-opts">
+          <div class="sf-opt active" onclick="setOpt(this,'quartos','1')">1 qto</div>
+          <div class="sf-opt" onclick="setOpt(this,'quartos','2')">2 qtos</div>
+          <div class="sf-opt" onclick="setOpt(this,'quartos','3')">3 qtos</div>
+          <div class="sf-opt" onclick="setOpt(this,'quartos','4')">4 qtos</div>
+        </div>
+      </div>
+
+      <!-- Entrada -->
+      <div class="sim-field">
+        <div class="sf-head">
+          <span class="sf-lbl">Entrada disponível (FGTS + Poupança)</span>
+          <span class="sf-val" id="vEntrada">R$ 10.000</span>
+        </div>
+        <input type="range" id="sEntrada" min="0" max="80000" step="2000" value="10000" oninput="calcSim()">
+      </div>
+
+      <!-- Modalidade -->
+      <div class="sim-field">
+        <div class="sf-head"><span class="sf-lbl">Modalidade</span></div>
+        <div class="sf-opts">
+          <div class="sf-opt active" onclick="setOpt(this,'modalidade','mcmv')">MCMV</div>
+          <div class="sf-opt" onclick="setOpt(this,'modalidade','fgts')">FGTS</div>
+          <div class="sf-opt" onclick="setOpt(this,'modalidade','terreno')">Terreno próprio</div>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="sim-result">
+        <div class="sr-label">Estimativa de parcela mensal</div>
+        <div class="sr-value"><sup>R$</sup><span id="parcela">487</span></div>
+        <div class="sr-note" id="sim-note">Baseado em MCMV faixa 1 · 360 meses · juros a partir de 4,5% a.a.</div>
+        <div class="sr-breakdown">
+          <div class="srb"><div class="srb-v" id="sb-val">R$ <span id="vImov">120.000</span></div><div class="srb-l">Valor estimado</div></div>
+          <div class="srb"><div class="srb-v"><span id="sb-prazo">360</span>x</div><div class="srb-l">Meses de prazo</div></div>
+          <div class="srb"><div class="srb-v" id="sb-taxa">4,5% a.a.</div><div class="srb-l">Juros estimados</div></div>
+        </div>
+      </div>
+      <a href="#contato" class="btn-orange" style="width:100%;justify-content:center;">Quero essa parcela! →</a>
+      <p style="font-size:10px;font-weight:300;color:var(--muted2);text-align:center;margin-top:10px;line-height:1.5;">*Simulação orientativa. Valores reais dependem de análise de crédito e condições do imóvel.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="t-item">Minha Casa Minha Vida <span class="t-sep">◆</span></div>
+    <div class="t-item">Construção no Seu Terreno <span class="t-sep">◆</span></div>
+    <div class="t-item">Projetos Personalizados <span class="t-sep">◆</span></div>
+    <div class="t-item">Financiamento FGTS <span class="t-sep">◆</span></div>
+    <div class="t-item">Entrega de Chaves <span class="t-sep">◆</span></div>
+    <div class="t-item">Sem Burocracia <span class="t-sep">◆</span></div>
+    <div class="t-item">1 a 4 Quartos <span class="t-sep">◆</span></div>
+    <div class="t-item">CRATEÚS CONSTRUÇÕES <span class="t-sep">◆</span></div>
+    <div class="t-item">Minha Casa Minha Vida <span class="t-sep">◆</span></div>
+    <div class="t-item">Construção no Seu Terreno <span class="t-sep">◆</span></div>
+    <div class="t-item">Projetos Personalizados <span class="t-sep">◆</span></div>
+    <div class="t-item">Financiamento FGTS <span class="t-sep">◆</span></div>
+    <div class="t-item">Entrega de Chaves <span class="t-sep">◆</span></div>
+    <div class="t-item">Sem Burocracia <span class="t-sep">◆</span></div>
+    <div class="t-item">1 a 4 Quartos <span class="t-sep">◆</span></div>
+    <div class="t-item">CRATEÚS CONSTRUÇÕES <span class="t-sep">◆</span></div>
+  </div>
+</div>
+
+<!-- ══ COMO FUNCIONA ══ -->
+<div class="sec-como reveal" id="como-funciona">
+  <div class="como-wrap">
+    <div class="como-left">
+      <div class="como-watermark">5</div>
+      <div class="como-left-c">
+        <div class="s-eye">Processo</div>
+        <h2 class="s-h">Da consulta<br>às <span class="orange">chaves</span><br><em>nas suas mãos.</em></h2>
+        <p class="s-p">Cuidamos de tudo — da análise de crédito até a entrega. Você só precisa escolher o projeto e esperar o momento de girar a chave.</p>
+        <div style="margin-top:36px;"><a href="#contato" class="btn-orange">Começar agora →</a></div>
+      </div>
+    </div>
+    <div class="como-right">
+      <div class="step-item reveal r1">
+        <div class="step-num">1</div>
+        <div class="step-ico">📞</div>
+        <div>
+          <div class="step-title">Consulta Gratuita</div>
+          <div class="step-desc">Você conversa com nossa equipe sobre sua renda, perfil e sonhos. Fazemos a simulação na hora e identificamos a melhor modalidade para você.</div>
+          <span class="step-badge">Grátis e sem compromisso</span>
+        </div>
+      </div>
+      <div class="step-item reveal r2">
+        <div class="step-num">2</div>
+        <div class="step-ico">📐</div>
+        <div>
+          <div class="step-title">Escolha do Projeto</div>
+          <div class="step-desc">Apresentamos projetos residenciais personalizados de acordo com seu terreno, necessidade e orçamento. 1, 2, 3 ou 4 quartos — você decide.</div>
+          <span class="step-badge">Projeto 100% personalizado</span>
+        </div>
+      </div>
+      <div class="step-item reveal r3">
+        <div class="step-num">3</div>
+        <div class="step-ico">📋</div>
+        <div>
+          <div class="step-title">Aprovação e Contrato</div>
+          <div class="step-desc">Nossa equipe cuida de toda a documentação e submissão ao banco para você. Acompanhamos cada etapa da aprovação do crédito sem te deixar perdido.</div>
+          <span class="step-badge">Sem burocracia para você</span>
+        </div>
+      </div>
+      <div class="step-item reveal r4">
+        <div class="step-num">4</div>
+        <div class="step-ico">🏗️</div>
+        <div>
+          <div class="step-title">Obra com Acompanhamento</div>
+          <div class="step-desc">Construção com materiais de qualidade e cronograma transparente. Você acompanha o progresso em tempo real — nada de surpresa.</div>
+          <span class="step-badge">Prazo garantido em contrato</span>
+        </div>
+      </div>
+      <div class="step-item reveal r5">
+        <div class="step-num">5</div>
+        <div class="step-ico">🔑</div>
+        <div>
+          <div class="step-title">Entrega das Chaves</div>
+          <div class="step-desc">O momento mais emocionante: a entrega das chaves da sua casa! Acompanhamos a vistoria final e garantimos que tudo está perfeito para sua família.</div>
+          <span class="step-badge">🏠 Casa entregue e escriturada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FINANCIAMENTOS ══ -->
+<section class="sec-fin reveal" id="financiamentos">
+  <div class="fin-head">
+    <div>
+      <div class="s-eye">Modalidades</div>
+      <h2 class="s-h">A casa certa<br>para <span class="orange">cada</span><br><em>família.</em></h2>
+    </div>
+    <p class="s-p">Trabalhamos com as principais linhas de crédito habitacional do Brasil para garantir que você consiga financiar com as melhores condições do mercado.</p>
+  </div>
+  <div class="fin-grid">
+    <div class="fin-card dest reveal r1">
+      <div class="fin-num">01</div>
+      <span class="fin-ico">🏘️</span>
+      <div class="fin-title">Minha Casa Minha Vida</div>
+      <p class="fin-desc">A principal linha de crédito habitacional do governo. Juros de 4% a 7% ao ano para famílias com renda de até R$ 8.000. Subsídio de até R$ 55.000.</p>
+      <div class="fin-tags"><span class="fin-tag">Juros 4% a.a.</span><span class="fin-tag">Subsídio R$ 55k</span><span class="fin-tag">FGTS</span></div>
+    </div>
+    <div class="fin-card reveal r2">
+      <div class="fin-num">02</div>
+      <span class="fin-ico">💰</span>
+      <div class="fin-title">FGTS + Poupança</div>
+      <p class="fin-desc">Use seu FGTS como entrada e reduza consideravelmente o valor financiado. Combinado com poupança, pode zerar completamente a entrada.</p>
+      <div class="fin-tags"><span class="fin-tag">Entrada zero</span><span class="fin-tag">Usa FGTS</span><span class="fin-tag">Menor parcela</span></div>
+    </div>
+    <div class="fin-card reveal r3">
+      <div class="fin-num">03</div>
+      <span class="fin-ico">🏡</span>
+      <div class="fin-title">Construção no Terreno</div>
+      <p class="fin-desc">Já tem terreno? Construímos sua casa no seu lote com financiamento específico para construção. Projeto personalizado do zero para o seu espaço.</p>
+      <div class="fin-tags"><span class="fin-tag">Terreno próprio</span><span class="fin-tag">Projeto exclusivo</span><span class="fin-tag">CEF</span></div>
+    </div>
+    <div class="fin-card reveal r1">
+      <div class="fin-num">04</div>
+      <span class="fin-ico">📄</span>
+      <div class="fin-title">Aquisição na Planta</div>
+      <p class="fin-desc">Compre na planta com valores de hoje e pague ao longo da obra. Menor preço, personalização total e valorização garantida até a entrega.</p>
+      <div class="fin-tags"><span class="fin-tag">Preço de hoje</span><span class="fin-tag">Personalização</span><span class="fin-tag">Valorização</span></div>
+    </div>
+    <div class="fin-card reveal r2">
+      <div class="fin-num">05</div>
+      <span class="fin-ico">🔧</span>
+      <div class="fin-title">Reforma e Ampliação</div>
+      <p class="fin-desc">Linha de crédito específica para reforma ou ampliação da casa que você já tem. Transformamos seu imóvel com projeto e execução por conta da Crateús.</p>
+      <div class="fin-tags"><span class="fin-tag">Reforma</span><span class="fin-tag">Ampliação</span><span class="fin-tag">Crédito próprio</span></div>
+    </div>
+    <div class="fin-card reveal r3">
+      <div class="fin-num">06</div>
+      <span class="fin-ico">⚡</span>
+      <div class="fin-title">Análise Express</div>
+      <p class="fin-desc">Em 24h analisamos seu perfil e respondemos se você está aprovado para financiamento. Sem espera, sem burocracia, com resposta direta no WhatsApp.</p>
+      <div class="fin-tags"><span class="fin-tag">24h</span><span class="fin-tag">WhatsApp</span><span class="fin-tag">Resposta direta</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OBRAS ══ -->
+<section class="sec-obras reveal" id="obras">
+  <div class="obras-head">
+    <div>
+      <div class="s-eye">Portfólio de Obras</div>
+      <h2 class="s-h">Casas entregues.<br><em>Famílias</em> <span class="orange">realizadas.</span></h2>
+    </div>
+    <a href="https://instagram.com/crateusconstrucoes" target="_blank" class="btn-outline-o">Ver no Instagram →</a>
+  </div>
+  <div class="obras-grid">
+    <div class="obra-item big reveal r1">
+      <div class="obra-inner"><div class="oi-ico">🏠</div><div class="oi-lbl">Entrega de Chaves · Família realizada</div></div>
+      <div class="obra-overlay"><span class="ov-tag">Entrega de Chaves</span></div>
+    </div>
+    <div class="obra-item reveal r2">
+      <div class="obra-inner"><div class="oi-ico">🏗️</div><div class="oi-lbl">Obra em andamento</div></div>
+      <div class="obra-overlay"><span class="ov-tag">2 Quartos</span></div>
+    </div>
+    <div class="obra-item reveal r3">
+      <div class="obra-inner"><div class="oi-ico">📐</div><div class="oi-lbl">Projeto personalizado</div></div>
+      <div class="obra-overlay"><span class="ov-tag">3 Quartos</span></div>
+    </div>
+    <div class="obra-item reveal r2">
+      <div class="obra-inner"><div class="oi-ico">🔑</div><div class="oi-lbl">Casa entregue · MCMV</div></div>
+      <div class="obra-overlay"><span class="ov-tag">MCMV Faixa 1</span></div>
+    </div>
+    <div class="obra-item reveal r3">
+      <div class="obra-inner"><div class="oi-ico">🏡</div><div class="oi-lbl">Terreno do cliente</div></div>
+      <div class="obra-overlay"><span class="ov-tag">Terreno próprio</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVIÇOS ══ -->
+<div class="sec-servicos reveal">
+  <div class="serv-wrap">
+    <div class="serv-left">
+      <div class="serv-left-c">
+        <div class="s-eye">Nossos Serviços</div>
+        <h2 class="s-h">Tudo que sua<br>família precisa<br><em>em um lugar.</em></h2>
+        <p class="s-p">Da aprovação do crédito à chave na mão — a Crateús cuida de cada etapa com profissionalismo e transparência.</p>
+        <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="#contato" class="btn-orange">Falar com consultor →</a>
+        </div>
+      </div>
+    </div>
+    <div class="serv-right">
+      <div class="serv-item reveal r1"><div class="serv-ico-box">🏠</div><div><div class="serv-title">Projetos Residenciais Personalizados</div><div class="serv-desc">Do projeto arquitetônico à execução — criamos a planta ideal para o seu terreno, família e orçamento.</div></div></div>
+      <div class="serv-item reveal r2"><div class="serv-ico-box">💳</div><div><div class="serv-title">Assessoria de Financiamento</div><div class="serv-desc">Cuidamos de toda a documentação e submissão do crédito nos bancos. Você não perde tempo com burocracia.</div></div></div>
+      <div class="serv-item reveal r3"><div class="serv-ico-box">🏗️</div><div><div class="serv-title">Construção no Seu Terreno</div><div class="serv-desc">Já tem o lote? Construímos com materiais de qualidade, cronograma transparente e acompanhamento completo.</div></div></div>
+      <div class="serv-item reveal r4"><div class="serv-ico-box">🔧</div><div><div class="serv-title">Reforma e Ampliação</div><div class="serv-desc">Transformamos casas existentes com projeto e execução profissional, usando linhas de crédito específicas.</div></div></div>
+      <div class="serv-item reveal r5"><div class="serv-ico-box">📋</div><div><div class="serv-title">Regularização e Documentação</div><div class="serv-desc">Habite-se, escritura, registro em cartório — resolvemos toda a parte burocrática do pós-obra.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DEPOIMENTOS ══ -->
+<section class="sec-dep reveal" id="depoimentos">
+  <div class="dep-head">
+    <div>
+      <div class="s-eye">Clientes</div>
+      <h2 class="s-h">Chaves entregues.<br><em>Sonhos</em> <span class="orange">realizados.</span></h2>
+    </div>
+    <a href="https://instagram.com/crateusconstrucoes" target="_blank" class="btn-outline-o">Ver no Instagram →</a>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card reveal r1">
+      <div class="dep-quote">"</div>
+      <div class="dep-stars">★★★★★</div>
+      <p class="dep-text">"Achei que nunca ia conseguir financiar. A Crateús fez a simulação, me encaminhou para o banco e em 3 meses a obra estava aprovada. Hoje moro na minha casa própria com parcela que cabe no meu bolso."</p>
+      <div class="dep-author"><div class="dep-init">M</div><div><div class="dep-name">Marcos e Daiana</div><div class="dep-role">MCMV Faixa 1 · Casa 2 quartos</div></div></div>
+    </div>
+    <div class="dep-card reveal r2">
+      <div class="dep-quote">"</div>
+      <div class="dep-stars">★★★★★</div>
+      <p class="dep-text">"Tinham o terreno há anos sem saber o que fazer. A Crateús fez o projeto, aprovou o financiamento e entregou a casa em menos de 8 meses. Atendimento impecável do começo ao fim!"</p>
+      <div class="dep-author"><div class="dep-init">A</div><div><div class="dep-name">Ana Paula F.</div><div class="dep-role">Construção no Terreno · 3 quartos</div></div></div>
+    </div>
+    <div class="dep-card reveal r3">
+      <div class="dep-quote">"</div>
+      <div class="dep-stars">★★★★★</div>
+      <p class="dep-text">"Usamos o FGTS como entrada e zeramos a entrada completamente. A parcela ficou menor do que pagávamos de aluguel. A Crateús cuidou de tudo — nós só esperamos a entrega das chaves!"</p>
+      <div class="dep-author"><div class="dep-init">J</div><div><div class="dep-name">João e família</div><div class="dep-role">FGTS + MCMV · Casa 3 quartos</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ENTREGA DE CHAVES ══ -->
+<div class="sec-chaves reveal">
+  <div class="chaves-wrap">
+    <div class="chaves-left">
+      <div class="chaves-left-c">
+        <div class="s-eye">O momento mais especial</div>
+        <h2 class="s-h">Entrega de<br>chaves.<br><em>Seu dia.</em></h2>
+        <p class="s-p">Nada se compara ao momento em que você segura a chave da sua própria casa. Cada entrega da Crateús é um momento de emoção, conquista e realização familiar que guardaremos para sempre.</p>
+        <div style="margin-top:36px;"><a href="#contato" class="btn-dark" style="background:var(--navy-d);color:var(--cream);padding:14px 28px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;">Quero minha entrega →</a></div>
+      </div>
+    </div>
+    <div class="chaves-right">
+      <div class="chave-item"><div class="chave-ico">🤝</div><div><div class="chave-title">Cerimônia de Entrega</div><div class="chave-desc">Cada família merece um momento especial. Realizamos a entrega com toda a emoção que o evento merece.</div></div></div>
+      <div class="chave-item"><div class="chave-ico">🔍</div><div><div class="chave-title">Vistoria Completa</div><div class="chave-desc">Antes da entrega, realizamos vistoria rigorosa para garantir que tudo está perfeito conforme o projeto.</div></div></div>
+      <div class="chave-item"><div class="chave-ico">📁</div><div><div class="chave-title">Documentação Completa</div><div class="chave-desc">Habite-se, manual do proprietário e toda documentação organizada para você desde o primeiro dia.</div></div></div>
+      <div class="chave-item"><div class="chave-ico">🛡️</div><div><div class="chave-title">Garantia Pós-Entrega</div><div class="chave-desc">Suporte e assistência técnica por 5 anos em estrutura, 1 ano em instalações, conforme o CDC.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTATO ══ -->
+<div class="sec-contato reveal" id="contato">
+  <div class="cont-wrap">
+    <div class="cont-left">
+      <div class="cont-left-c">
+        <div class="s-eye">Fale conosco</div>
+        <h2 class="s-h">Sua casa começa<br><span class="orange">aqui.</span></h2>
+        <p class="s-p">Consulta gratuita, sem compromisso. Nossa equipe analisa seu perfil e te mostra o caminho mais rápido para a sua casa própria.</p>
+        <div class="cont-infos">
+          <div class="c-info"><div class="c-ico">📲</div><div><div class="c-lbl">WhatsApp</div><div class="c-val">(85) 9 0000-0000</div></div></div>
+          <div class="c-info"><div class="c-ico">📸</div><div><div class="c-lbl">Instagram</div><div class="c-val">@crateusconstrucoes</div></div></div>
+          <div class="c-info"><div class="c-ico">🔗</div><div><div class="c-lbl">Linktree</div><div class="c-val">linktr.ee/crateusconstrucoes</div></div></div>
+          <div class="c-info"><div class="c-ico">⏰</div><div><div class="c-lbl">Atendimento</div><div class="c-val">Seg a Sex · 8h às 18h<br>Sábado · 8h às 12h</div></div></div>
+        </div>
+        <div class="cont-urgency">
+          <div class="cu-lbl">⚡ Análise Express</div>
+          <div class="cu-txt">Preencha o formulário ao lado e receba uma análise de crédito em até 24 horas diretamente no seu WhatsApp. Sem custo, sem burocracia.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cont-right">
+      <div class="s-eye" style="margin-bottom:28px;">Análise Gratuita</div>
+      <form class="c-form" onsubmit="handleForm(event)">
+        <div class="c-row">
+          <div class="c-group"><label class="c-flbl">Nome completo</label><input type="text" class="c-inp" placeholder="Seu nome" required></div>
+          <div class="c-group"><label class="c-flbl">WhatsApp</label><input type="tel" class="c-inp" placeholder="(00) 9 0000-0000" required></div>
+        </div>
+        <div class="c-group">
+          <label class="c-flbl">Renda familiar bruta</label>
+          <select class="c-sel">
+            <option value="" disabled selected>Selecione a faixa de renda</option>
+            <option>Até R$ 2.640 (Faixa 1 MCMV)</option>
+            <option>R$ 2.640 a R$ 4.400 (Faixa 2 MCMV)</option>
+            <option>R$ 4.400 a R$ 8.000 (Faixa 3 MCMV)</option>
+            <option>Acima de R$ 8.000</option>
+          </select>
+        </div>
+        <div class="c-row">
+          <div class="c-group">
+            <label class="c-flbl">Tenho terreno?</label>
+            <select class="c-sel">
+              <option value="" disabled selected>Selecione</option>
+              <option>Sim, tenho terreno próprio</option>
+              <option>Não, quero comprar na planta</option>
+              <option>Ainda não sei</option>
+            </select>
+          </div>
+          <div class="c-group">
+            <label class="c-flbl">Nº de quartos desejado</label>
+            <select class="c-sel">
+              <option value="" disabled selected>Selecione</option>
+              <option>1 quarto</option>
+              <option>2 quartos</option>
+              <option>3 quartos</option>
+              <option>4 quartos</option>
+            </select>
+          </div>
+        </div>
+        <div class="c-group"><label class="c-flbl">Tenho FGTS disponível?</label><select class="c-sel"><option value="" disabled selected>Selecione</option><option>Sim, tenho FGTS</option><option>Não sei verificar</option><option>Não tenho FGTS</option></select></div>
+        <div class="c-group"><label class="c-flbl">Mensagem (opcional)</label><textarea class="c-ta" placeholder="Conte um pouco mais sobre o que você precisa..."></textarea></div>
+        <div class="c-btns">
+          <button type="submit" class="c-sub" id="formBtn">Solicitar análise gratuita →</button>
+          <a href="https://wa.me/55000000000000?text=Olá!%20Quero%20simular%20meu%20financiamento!" target="_blank" class="c-wa">💬 WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CTA FINAL ══ -->
+<section class="sec-cta reveal">
+  <div class="s-eye">Próximo passo</div>
+  <h2 class="s-h" style="color:var(--cream);">Sua família merece<br><span class="orange">uma casa própria.</span><br><em>Comece hoje.</em></h2>
+  <p class="s-p" style="text-align:center;margin:0 auto 44px;">Não deixe o sonho da casa própria para depois. As condições do MCMV são as melhores dos últimos anos — e os juros podem subir. Fale com a Crateús agora.</p>
+  <div class="cta-btns">
+    <a href="#simulador" class="btn-orange" style="font-size:14px;padding:16px 34px;">Simular meu financiamento →</a>
+    <a href="https://wa.me/55000000000000" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:15px 30px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .25s;">💬 Falar agora no WhatsApp</a>
+    <a href="#contato" class="btn-outline">Análise gratuita</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div><div class="fl-logo">Crateús<span> Construções</span></div><div class="fl-sub">Construtora · Projetos Residenciais · Financiamentos</div></div>
+  <div class="fl-copy">© 2026 Crateús Construções.<br>Compre sua casa financiada, na planta e sem burocracia.</div>
+  <nav class="fl-nav">
+    <a href="#simulador">Simular</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#financiamentos">Financiamentos</a>
+    <a href="#obras">Obras</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.fin-card,.dep-card,.obra-item,.step-item,.serv-item,.pillar').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='14px';cur.style.height='14px';cur.style.borderRadius='0';ring.style.width='46px';ring.style.height='46px';ring.style.opacity='.2';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='32px';ring.style.height='32px';ring.style.opacity='.4';});
+});
+
+/* ── NAV ── */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+
+/* ── MOBILE ── */
+function openMob(){document.getElementById('mob').classList.add('open');document.body.style.overflow='hidden';}
+function closeMob(){document.getElementById('mob').classList.remove('open');document.body.style.overflow='';}
+
+/* ── SIMULATOR ── */
+const optState={quartos:'1',modalidade:'mcmv'};
+
+const modalConfig={
+  mcmv:   {taxa:4.5,prazo:360,base:{1:80000,2:120000,3:160000,4:200000},label:'MCMV faixa 1 · 360 meses · juros a partir de 4,5% a.a.'},
+  fgts:   {taxa:5.5,prazo:360,base:{1:90000,2:130000,3:170000,4:210000},label:'FGTS · 360 meses · juros a partir de 5,5% a.a.'},
+  terreno:{taxa:6.5,prazo:300,base:{1:70000,2:110000,3:145000,4:185000},label:'Construção no terreno · 300 meses · juros a partir de 6,5% a.a.'}
+};
+
+function fmtBRL(v){return v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});}
+
+function calcSim(){
+  const renda = parseInt(document.getElementById('sRenda').value);
+  const entrada = parseInt(document.getElementById('sEntrada').value);
+  const cfg = modalConfig[optState.modalidade];
+  const quartos = optState.quartos;
+
+  // Update displays
+  document.getElementById('vRenda').textContent='R$ '+fmtBRL(renda);
+  document.getElementById('vEntrada').textContent='R$ '+fmtBRL(entrada);
+
+  // Update range gradient
+  const rs = document.getElementById('sRenda');
+  rs.style.setProperty('--pct', ((renda-1500)/(12000-1500)*100)+'%');
+  const es = document.getElementById('sEntrada');
+  es.style.setProperty('--pct', ((entrada)/(80000)*100)+'%');
+
+  // Calc
+  let valorImovel = cfg.base[quartos];
+  // Income boost
+  valorImovel = Math.min(valorImovel, renda * 35);
+  const financiado = Math.max(0, valorImovel - entrada);
+  const i = cfg.taxa / 100 / 12;
+  const n = cfg.prazo;
+  let parcela;
+  if(i===0) parcela = financiado/n;
+  else parcela = financiado * (i * Math.pow(1+i,n)) / (Math.pow(1+i,n)-1);
+  // Cap parcela at 30% income
+  const capParcela = renda * 0.30;
+  if(parcela > capParcela) parcela = capParcela;
+  parcela = Math.max(280, parcela);
+
+  document.getElementById('parcela').textContent = fmtBRL(Math.round(parcela));
+  document.getElementById('vImov').textContent = fmtBRL(Math.round(valorImovel));
+  document.getElementById('sb-prazo').textContent = cfg.prazo;
+  document.getElementById('sb-taxa').textContent = cfg.taxa+'% a.a.';
+  document.getElementById('sim-note').textContent = cfg.label;
+}
+
+function setOpt(el,group,val){
+  el.closest('.sf-opts').querySelectorAll('.sf-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  optState[group]=val;
+  calcSim();
+}
+
+// Init
+calcSim();
+
+/* ── REVEAL ── */
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');}),{threshold:.05});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── FORM ── */
+function handleForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('formBtn');
+  btn.textContent='Solicitado! Entraremos em contato em 24h ✓';
+  btn.style.background='#22c55e';btn.style.color='#000';
+  setTimeout(()=>{btn.textContent='Solicitar análise gratuita →';btn.style.background='';btn.style.color='';e.target.reset();},4500);
+}
+</script>
+</body>
+</html>
